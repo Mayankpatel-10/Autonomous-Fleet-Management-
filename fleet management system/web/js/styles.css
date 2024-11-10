@@ -1,0 +1,360 @@
+/* Base Variables */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --danger-color: #e74c3c;
+    --text-color: #2c3e50;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --sidebar-width: 250px;
+    --header-height: 60px;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base font size for rem units */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Mobile First Approach */
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Typography */
+h1 {
+    font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+}
+
+h2 {
+    font-size: clamp(1.3rem, 1.8vw + 0.8rem, 1.8rem);
+}
+
+h3 {
+    font-size: clamp(1.1rem, 1.5vw + 0.6rem, 1.5rem);
+}
+
+/* Mobile Sidebar */
+.sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    height: 100vh;
+    width: 85%;
+    max-width: var(--sidebar-width);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    z-index: 1000;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/* Mobile Header */
+.mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: var(--header-height);
+}
+
+.menu-toggle {
+    display: block;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: 0;
+    padding: 1rem;
+    margin-top: var(--header-height);
+    transition: margin-left 0.3s ease;
+}
+
+/* Stats Grid - Mobile First */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+/* Vehicles Grid - Mobile First */
+.vehicles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.vehicle-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+/* Responsive Modal */
+.modal-content {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: 2.5vh auto;
+    padding: 1rem;
+}
+
+/* Responsive Charts Container */
+.chart-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Flexible Images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Utility Classes for Responsiveness */
+.hide-mobile {
+    display: none;
+}
+
+.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Tablet Breakpoint (768px) */
+@media screen and (min-width: 48em) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vehicles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .modal-content {
+        width: 80%;
+        margin: 5vh auto;
+    }
+}
+
+/* Laptop Breakpoint (1024px) */
+@media screen and (min-width: 64em) {
+    .dashboard {
+        grid-template-columns: var(--sidebar-width) 1fr;
+    }
+
+    .sidebar {
+        position: sticky;
+        left: 0;
+        width: var(--sidebar-width);
+    }
+
+    .mobile-header {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: var(--sidebar-width);
+        margin-top: 0;
+        padding: 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .vehicles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hide-mobile {
+        display: block;
+    }
+
+    .modal-content {
+        width: 60%;
+        max-width: 800px;
+    }
+}
+
+/* Desktop Breakpoint (1440px) */
+@media screen and (min-width: 90em) {
+    .vehicles-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .main-content {
+        padding: 2.5rem;
+    }
+}
+
+/* 4K Screens (2560px) */
+@media screen and (min-width: 160em) {
+    html {
+        font-size: 18px;
+    }
+
+    .vehicles-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .main-content {
+        padding: 3rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .vehicle-card {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-item:hover {
+        transform: none;
+    }
+}
+
+/* Landscape Mode Optimization */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        position: fixed;
+    }
+
+    .modal-content {
+        max-height: 85vh;
+        margin: 5vh auto;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --card-shadow: 0 0 0 2px var(--text-color);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .mobile-header,
+    .modal {
+        display: none;
+    }
+
+    .main-content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .dashboard {
+        display: block;
+    }
+}
+
+/* Component-Specific Responsive Styles */
+
+/* Battery Indicator */
+.battery-indicator {
+    height: clamp(15px, 2vh, 25px);
+    border-radius: 5px;
+    margin: 0.5rem 0;
+}
+
+/* Status Badges */
+.vehicle-status {
+    padding: 0.3em 0.8em;
+    border-radius: 1em;
+    font-size: clamp(0.75rem, 1vw + 0.5rem, 0.9rem);
+}
+
+/* Navigation Items */
+.nav-item {
+    padding: clamp(0.8rem, 1.5vh, 1.2rem);
+    margin: 0.3rem 0;
+    border-radius: 5px;
+}
+
+.nav-item i {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    width: 1.5em;
+}
+
+/* Alert Container */
+.alert-container {
+    width: clamp(250px, 90vw, 400px);
+    max-width: 100%;
+    padding: 1rem;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: clamp(5px, 1vw, 10px);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 5px;
+}
+
+/* Backdrop Filter Support */
+@supports (backdrop-filter: blur(10px)) {
+    .modal {
+        backdrop-filter: blur(10px);
+    }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Fleet Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <h1>Fleet Management</h1>
+            <div class="nav-item active" data-page="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </div>
+            <div class="nav-item" data-page="vehicles">
+                <i class="fas fa-car"></i>
+                Vehicles
+            </div>
+            <div class="nav-item" data-page="routes">
+                <i class="fas fa-route"></i>
+                Routes
+            </div>
+            <div class="nav-item" data-page="maintenance">
+                <i class="fas fa-tools"></i>
+                Maintenance
+            </div>
+            <div class="nav-item" data-page="analytics">
+                <i class="fas fa-chart-line"></i>
+                Analytics
+            </div>
+            <div class="nav-item" data-page="settings">
+                <i class="fas fa-cog"></i>
+                Settings
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Vehicles</h3>
+                    <div class="value" id="totalVehicles">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Vehicles</h3>
+                    <div class="value" id="activeVehicles">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Charging</h3>
+                    <div class="value" id="chargingVehicles">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>In Maintenance</h3>
+                    <div class="value" id="maintenanceVehicles">0</div>
+                </div>
+            </div>
+
+            <!-- Real-time Map View -->
+            <div class="map-container">
+                <div id="fleetMap" class="fleet-map"></div>
+            </div>
+
+            <!-- Vehicle Grid -->
+            <div class="vehicles-grid" id="vehiclesGrid">
+                <!-- Vehicle cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Alert Container -->
+            <div id="alertContainer" class="alert-container"></div>
+        </div>
+    </div>
+
+    <!-- Modal for Vehicle Details -->
+    <div id="vehicleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Vehicle Details</h2>
+            <div id="vehicleDetails"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
